@@ -34,6 +34,12 @@ public class CollapsibleTest {
           "<div class=\"invisible\"> content <br/></div>" + HtmlElement.endl);
     }
 
+    @Test public void doesNotAddExtraBreakAfterCollapsible() {
+        Collapsible.resetId();
+        ParserTestHelper.assertTranslatesTo("!* Some title\n*!\nnext line",
+          sectionWithClass("collapsable", "Open", "") + "next line");
+    }
+
     private String sectionWithClass(String sectionClass, String image, String content) {
         return "<div class=\"collapse_rim\">" + HtmlElement.endl +
         "\t<div style=\"float: right;\" class=\"meta\">" + HtmlElement.endl +

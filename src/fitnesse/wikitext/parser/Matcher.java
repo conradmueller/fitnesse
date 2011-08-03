@@ -109,6 +109,18 @@ public class Matcher {
         return this;
     }
 
+    public Matcher ignoreOnce(final char delimiter) {
+      matches.add(new ScanMatch() {
+          public Maybe<Integer> match(ScanString input, int offset) {
+            if (input.charAt(offset) == delimiter) {
+              return new Maybe<Integer>(1);
+            }
+            return new Maybe<Integer>(0);
+          }
+      });
+      return this;
+    }
+
     public Matcher repeat(final char delimiter) {
         if (firsts == null) {
             firsts = new ArrayList<Character>();

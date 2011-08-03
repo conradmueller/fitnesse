@@ -48,4 +48,9 @@ public class LineTest {
     @Test public void translatesMetas() {
         ParserTestHelper.assertTranslatesTo("!meta stuff", "<span class=\"meta\">stuff</span>");
     }
+
+    @Test public void doesNotAddExtraBreakBeforeNextLine() {
+      ParserTestHelper.assertTranslatesTo("!1 header\nnext line", "<h1>header</h1>" + HtmlElement.endl + "next line");
+    }
+
 }
